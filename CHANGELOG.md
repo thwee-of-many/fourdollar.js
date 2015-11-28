@@ -12,3 +12,8 @@
 #### v0.1.1
 
 - [x] resource들 위치변경
+
+
+#### v0.1.2
+
+- [x] spec resource 경로 수정

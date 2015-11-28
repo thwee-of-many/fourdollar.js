@@ -16,7 +16,7 @@ describe('fourdollar:', function () {
       var catchCallback = jasmine.createSpy();
 
       waitsForPromise(function () {
-        return _readFile(path.resolve(__dirname, 'dmp01.txt'))
+        return _readFile(path.resolve(__dirname, '../resource/dmp01.txt'))
         .then(thenCallback)
         .catch(catchCallback);
       });
@@ -47,7 +47,7 @@ describe('fourdollar:', function () {
 
     it('then 인수도 전달받는다.', function () {
       waitsForPromise(function () {
-        return _readFile(path.resolve(__dirname, 'dmp01.txt'), {encoding: 'utf-8'})
+        return _readFile(path.resolve(__dirname, '../resource/dmp01.txt'), {encoding: 'utf-8'})
         .then(function (data) {
           expect(data).toEqual('Hello World!!\n');
         });
@@ -128,24 +128,24 @@ describe('fourdollar:', function () {
       var _exists = $4.makePromise(fs.exists, false);
 
       waitsForPromise(function () {
-        return _exists(path.resolve(__dirname, 'foo/bar'))
+        return _exists(path.resolve(__dirname, '../tmp/foo/bar'))
         .then(function (exists) {
           if(exists) {
-            return _rmdir(path.resolve(__dirname, 'foo/bar'));
+            return _rmdir(path.resolve(__dirname, '../tmp/foo/bar'));
           }
         }).then(function () {
-          return _exists(path.resolve(__dirname, 'foo'));
+          return _exists(path.resolve(__dirname, '../tmp/foo'));
         }).then(function (exists) {
           if(exists) {
-            return _rmdir(path.resolve(__dirname, 'foo'));
+            return _rmdir(path.resolve(__dirname, '../tmp/foo'));
           }
         });
       });
 
       waitsForPromise(function () {
-        return $4._constructDir(path.resolve(__dirname, 'foo/bar'))
+        return $4._constructDir(path.resolve(__dirname, '../tmp/foo/bar'))
         .then(function () {
-          return _exists(path.resolve(__dirname, 'foo/bar'));
+          return _exists(path.resolve(__dirname, '../tmp/foo/bar'));
         }).then(function (exists) {
           expect(exists).toBeTruthy();
         });
@@ -157,7 +157,7 @@ describe('fourdollar:', function () {
   describe('node._getRemoteData():', function () {
     it('원격지에서 data를 가져올 수 있다.', function () {
       waitsForPromise(function () {
-        return $4._getRemoteData('https://raw.githubusercontent.com/bynaki/atom.bynote/v0.3/spec/dmp01.txt')
+        return $4._getRemoteData('https://raw.githubusercontent.com/bynaki/fourdollar.js/v0.1/resource/dmp01.txt')
         .then(function (data) {
           expect(data.toString()).toEqual('Hello World!!\n');
         });
@@ -180,8 +180,8 @@ describe('fourdollar:', function () {
 
 
   describe('node._download', function () {
-    var uri = 'https://raw.githubusercontent.com/bynaki/atom.bynote/master/images/ironman.jpg';
-    var filename = path.resolve(__dirname, 'ironman.jpg');
+    var uri = 'https://raw.githubusercontent.com/bynaki/fourdollar.js/v0.1/resource/ironman.jpg';
+    var filename = path.resolve(__dirname, '../tmp/ironman.jpg');
 
     it('원격지의 파일을 다운로드한다.', function () {
       var _exists = $4.makePromise(fs.exists, false);
@@ -222,8 +222,8 @@ describe('fourdollar:', function () {
 
 
   describe('node._download2', function () {
-    var uri = 'https://raw.githubusercontent.com/bynaki/atom.bynote/master/images/ironman.jpg';
-    var filename = path.resolve(__dirname, 'ironman.jpg');
+    var uri = 'https://raw.githubusercontent.com/bynaki/fourdollar.js/v0.1/resource/ironman.jpg';
+    var filename = path.resolve(__dirname, '../tmp/ironman.jpg');
 
     it('원격지의 파일을 다운로드한다.', function () {
       var _exists = $4.makePromise(fs.exists, false);
