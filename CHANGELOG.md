@@ -17,3 +17,8 @@
 #### v0.1.2
 
 - [x] spec resource 경로 수정
+
+
+#### v0.1.3
+
+- [x] package.json 최종 버젼 반영
