@@ -36,15 +36,15 @@ $4.makePromise = function (func, hasErr) {
   }
   return function () {
     var args = Array.prototype.slice.call(arguments);
-    return new Promise(function (resovle, reject) {
+    return new Promise(function (resolve, reject) {
       args.push(function (err) {
         var args = Array.prototype.slice.call(arguments);
         if(hasErr && err) {
           reject(err);
         } else if(hasErr) {
-          resovle.apply(this, args.slice(1, 1000));
+          resolve.apply(this, args.slice(1, 1000));
         } else {
-          resovle.apply(this, args);
+          resolve.apply(this, args);
         }
       }.bind(this));
       func.apply(this, args);
@@ -257,7 +257,7 @@ node = function () {
   //   .then(function () {
   //     return _exists(filename);
   //   }).then(function (exists) {
-  //     expect(exists).toBeTruthy();
+  //     expect(exists).toBeTruthy(); // clever!
   //   });
   // });
   // ```
